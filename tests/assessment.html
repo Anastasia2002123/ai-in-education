@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Практичні завдання ШІ та МН</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 800px; margin: 2em auto; padding: 1em; background: #f7f9fc; }
+  h2 { color: #333; }
+  section { background: #fff; padding: 1em 2em; margin-bottom: 2em; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);}
+  label { display: block; margin-top: 1em; }
+  button { margin-top: 1em; padding: 0.4em 1em; font-size: 1em; cursor: pointer; }
+  pre { background: #eee; padding: 1em; border-radius: 4px; overflow-x: auto; }
+  .result { margin-top: 1em; font-weight: bold; color: #007700; }
+  .error { color: #aa0000; }
+  code { background: #eee; padding: 2px 5px; border-radius: 3px; }
+  a { color: #0645ad; }
+</style>
+</head>
+<body>
+
+<h1>Практичні завдання: Штучний інтелект та машинне навчання</h1>
+
+<!-- Рівень 1 -->
+<section>
+  <h2>Рівень 1 – Базові вправи</h2>
+
+  <h3>Завдання 1. Розпізнай тип навчання</h3>
+  <p>Прочитай опис та вибери тип навчання для кожного випадку:</p>
+  <form id="task1Form">
+    <label>А. У комп'ютер є доступ до набору зображень, кожне підписане ("кіт", "пес").<br/>
+      <select name="A" required>
+        <option value="">Виберіть тип</option>
+        <option value="Навчання з учителем">Навчання з учителем</option>
+        <option value="Навчання без учителя">Навчання без учителя</option>
+        <option value="Навчання з підкріпленням">Навчання з підкріпленням</option>
+      </select>
+    </label>
+
+    <label>Б. Система вивчає, як користувач клацає на статті новин, без жодних підписів.<br/>
+      <select name="B" required>
+        <option value="">Виберіть тип</option>
+        <option value="Навчання з учителем">Навчання з учителем</option>
+        <option value="Навчання без учителя">Навчання без учителя</option>
+        <option value="Навчання з підкріпленням">Навчання з підкріпленням</option>
+      </select>
+    </label>
+
+    <label>В. Робот навчається рухатись лабіринтом через систему нагород.<br/>
+      <select name="C" required>
+        <option value="">Виберіть тип</option>
+        <option value="Навчання з учителем">Навчання з учителем</option>
+        <option value="Навчання без учителя">Навчання без учителя</option>
+        <option value="Навчання з підкріпленням">Навчання з підкріпленням</option>
+      </select>
+    </label>
+
+    <button type="button" onclick="checkTask1()">Перевірити</button>
+  </form>
+  <div id="task1Result" class="result"></div>
+
+  <hr/>
+
+  <h3>Завдання 2. Обчисли вихід простого нейрона</h3>
+  <p>Нейрон має два входи: x1 = 1, x2 = 2<br/>
+     Ваги: w1 = 0.5, w2 = -0.3<br/>
+     Активаційна функція – порогова (результат > 0 → 1, інакше 0)</p>
+
+  <button type="button" onclick="calculateNeuron()">Обчислити вихід нейрона</button>
+  <div id="task2Result" class="result"></div>
+</section>
+
+<!-- Рівень 2 -->
+<section>
+  <h2>Рівень 2 – Застосування в реальному середовищі</h2>
+
+  <h3>Завдання 3. Побудуй просту модель класифікації</h3>
+  <p>Для цього завдання рекомендується використовувати <a href="https://colab.research.google.com/" target="_blank">Google Colab</a> та бібліотеку <code>scikit-learn</code>.</p>
+
+  <p>Ось приклад коду, який можна скопіювати і запустити в Google Colab:</p>
+  <pre>
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Завантаження даних
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Розділення на тренувальні та тестові
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Створення моделі
+model = KNeighborsClassifier(n_neighbors=3)
+model.fit(X_train, y_train)
+
+# Прогнозування
+y_pred = model.predict(X_test)
+
+# Оцінка точності
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Точність моделі: {accuracy:.2f}")
+  </pre>
+
+  <p>Можеш змінювати параметри <code>n_neighbors</code> і дивитися, як це впливає на точність.</p>
+  <p><b>Посилання на готовий Colab notebook з цим прикладом:</b> <a href="https://colab.research.google.com/drive/1riQxPLlwDQFOmTHkUKqOx0yV9ihv3ZPY?usp=sharing" target="_blank">Notebook KNN Iris Classification</a></p>
+</section>
+
+<!-- Рівень 3 -->
+<section>
+  <h2>Рівень 3 – Кейс-завдання</h2>
+
+  <h3>Завдання 4. Аналіз фейкових новин</h3>
+  <p>Завантаж набір даних: <a href="https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset" target="_blank">Fake News Dataset на Kaggle</a></p>
+
+  <p>Кроки для виконання завдання у Google Colab або Jupyter Notebook:</p>
+  <ol>
+    <li>Очисть текст новин: видали HTML-теги, стоп-слова.</li>
+    <li>Побудуй модель логістичної регресії або дерева рішень для класифікації.</li>
+    <li>Використай <code>CountVectorizer</code> або <code>TfidfVectorizer</code> для векторизації текстів.</li>
+    <li>Проаналізуй слова, які найчастіше зустрічаються у фейкових новинах.</li>
+  </ol>
+
+  <p>Ось приклад коду для Google Colab (скорочений):</p>
+  <pre>
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+
+# Завантаження даних (потрібно спочатку завантажити CSV у Colab)
+df = pd.read_csv('Fake.csv')
+
+# Очистка тексту - можна додати власні функції
+
+# Розділення
+X_train, X_test, y_train, y_test = train_test_split(df['text'], df['label'], test_size=0.3, random_state=42)
+
+# Векторизація
+vectorizer = TfidfVectorizer(stop_words='english', max_features=10000)
+X_train_tfidf = vectorizer.fit_transform(X_train)
+X_test_tfidf = vectorizer.transform(X_test)
+
+# Модель
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train_tfidf, y_train)
+
+# Прогнозування
+y_pred = model.predict(X_test_tfidf)
+print(classification_report(y_test, y_pred))
+
+# Аналіз найважливіших слів
+feature_names = vectorizer.get_feature_names_out()
+coef = model.coef_[0]
+top_fake_words = [feature_names[i] for i in coef.argsort()[-20:]]
+print("Слова, що найбільше асоціюються з фейковими новинами:", top_fake_words)
+  </pre>
+
+  <p><b>Рекомендую завантажити датасет на Kaggle і працювати у Google Colab для цього завдання.</b></p>
+</section>
+
+<script>
+  function checkTask1() {
+    const form = document.getElementById('task1Form');
+    const A = form.A.value;
+    const B = form.B.value;
+    const C = form.C.value;
+    let correctAnswers = {
+      A: "Навчання з учителем",
+      B: "Навчання без учителя",
+      C: "Навчання з підкріпленням"
+    };
+    let results = [];
+    results.push(`А – ${A} ${A === correctAnswers.A ? '✅' : '❌'}`);
+    results.push(`Б – ${B} ${B === correctAnswers.B ? '✅' : '❌'}`);
+    results.push(`В – ${C} ${C === correctAnswers.C ? '✅' : '❌'}`);
+    let score = 0;
+    if (A === correctAnswers.A) score++;
+    if (B === correctAnswers.B) score++;
+    if (C === correctAnswers.C) score++;
+    let msg = results.join('<br>') + `<br><br>Правильно відповідей: ${score} з 3`;
+    document.getElementById('task1Result').innerHTML = msg;
+  }
+
+  function calculateNeuron() {
+    // Вхідні значення та ваги
+    const x1 = 1;
+    const x2 = 2;
+    const w1 = 0.5;
+    const w2 = -0.3;
+    // Обчислення лінійної суми
+    const z = x1*w1 + x2*w2;
+    // Порогова функція активації
+    const output = (z > 0) ? 1 : 0;
+    document.getElementById('task2Result').innerHTML = 
+      `Результат роботи нейрона: z = ${z.toFixed(2)}, вихід = ${output}`;
+  }
+</script>
+
+</body>
+</html>

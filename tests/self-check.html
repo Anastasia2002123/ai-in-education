@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Тести з теми Штучний інтелект</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f8; }
+    h1 { color: #333366; }
+    .question { margin-bottom: 20px; padding: 10px; background: #fff; border-radius: 8px; box-shadow: 0 0 5px #ccc; }
+    button { margin-top: 10px; }
+    .result { font-weight: bold; color: green; }
+  </style>
+</head>
+<body>
+
+<h1>Самоперевірка: Штучний інтелект та машинне навчання</h1>
+
+<div class="question" id="q1">
+  <p><strong>1. Що таке машинне навчання?</strong></p>
+  <input type="radio" name="q1" value="A"> A. Технологія для створення комп'ютерних ігор<br>
+  <input type="radio" name="q1" value="B"> B. Метод, який дозволяє комп'ютерам вчитися з даних<br>
+  <input type="radio" name="q1" value="C"> C. Система для зберігання інформації<br>
+  <input type="radio" name="q1" value="D"> D. Спосіб підключення до інтернету<br>
+</div>
+
+<div class="question" id="q2">
+  <p><strong>2. Який тип навчання включає наявність міток у даних?</strong></p>
+  <input type="radio" name="q2" value="A"> A. Без учителя<br>
+  <input type="radio" name="q2" value="B"> B. З підкріпленням<br>
+  <input type="radio" name="q2" value="C"> C. З учителем<br>
+  <input type="radio" name="q2" value="D"> D. Гібридне<br>
+</div>
+
+<div class="question" id="q3">
+  <p><strong>3. Встановіть відповідність:</strong><br>Запишіть відповідності у форматі A1, B2, C3, D4 (через кому):</p>
+  <ul>
+    <li>A. Класифікація</li>
+    <li>B. Нейронна мережа</li>
+    <li>C. Навчання з учителем</li>
+    <li>D. Регресія</li>
+  </ul>
+  <ul>
+    <li>1. Розподіл об'єктів на групи</li>
+    <li>2. Модель, натхненна людським мозком</li>
+    <li>3. Навчання за наявності правильних відповідей</li>
+    <li>4. Прогнозування числового значення</li>
+  </ul>
+  <input type="text" id="match">
+</div>
+
+<div class="question" id="q4">
+  <p><strong>4. Відкрите питання:</strong><br>У чому полягає відмінність між навчанням з учителем та без учителя?</p>
+  <textarea id="open" rows="3" cols="50" placeholder="Напишіть свою відповідь..."></textarea>
+</div>
+
+<button onclick="checkAnswers()">Перевірити відповіді</button>
+<p class="result" id="result"></p>
+
+<script>
+function checkAnswers() {
+  let score = 0;
+
+  if (document.querySelector('input[name="q1"]:checked')?.value === "B") score++;
+  if (document.querySelector('input[name="q2"]:checked')?.value === "C") score++;
+  if (document.getElementById("match").value.trim().toUpperCase() === "A1,B2,C3,D4") score++;
+
+  const open = document.getElementById("open").value.toLowerCase();
+  if (open.includes("мітки") && open.includes("структуру")) score++;
+
+  document.getElementById("result").innerText = `Ваша оцінка: ${score}/4`;
+}
+</script>
+
+</body>
+</html>
